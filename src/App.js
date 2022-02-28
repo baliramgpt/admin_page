@@ -44,9 +44,9 @@ const App = (props) => {
         <BrowserRouter >
           <Switch>
             <Route exact path="/" component={LoginPage} />
-            {JSON.parse(sessionStorage.getItem('userdata'))
+            {/* {JSON.parse(sessionStorage.getItem('userdata'))
               ?
-              JSON.parse(sessionStorage.getItem('userdata')).config.data.split(",")[2].replace(/"|}|:|role/g, "") === "admin" ?
+              JSON.parse(sessionStorage.getItem('userdata')).config.data.split(",")[2].replace(/"|}|:|role/g, "") === "admin" ? */}
                 <React.Fragment>
                   <Route path="/homescreen" component={Homescreen} />
                   {UserRouter.map(({ path, component }, index) => <Route key={index} exact path={path} component={component} />)}
@@ -69,18 +69,6 @@ const App = (props) => {
                   <Route path="/syllabus" component={Syllabus} />
                   <Route path="/timetable" component={TimeTable} />
                 </React.Fragment>
-
-                : JSON.parse(sessionStorage.getItem('userdata')).config.data.split(",")[2].replace(/"|}|:|role/g, "") === "teacher"
-                  ?
-                  <>
-                    <Route path="/result" component={ResultList} />
-                    <Route path="/approveresult" component={ApproveResult} />
-                    <Route path="/studentresult" component={StudentResult} />
-                    <Route path="/eresources" component={EResources} />
-                  </>
-                  : null
-              : <Redirect to={{ pathname: '/' }} />}
-
 
           </Switch>
 
